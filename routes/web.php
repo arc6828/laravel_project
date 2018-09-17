@@ -35,11 +35,11 @@ Route::get('/category/{a?}', function($a = "mobile") {
 	return "<h1>This is category page : $a </h1>" ;
 });
 
-Route::get('/hello', function () {	
+Route::get('/hello', function () {
 	return view('hello');
 });
 
-Route::get('/greeting', function () {	
+Route::get('/greeting', function () {
 	$data = [
 		'name'      => 'James' ,
 		'last_name' => 'Mars'
@@ -54,3 +54,7 @@ Route::get('/combine/{id}', function ($id) {
 	];
 	return view('combine', $data);
 });
+
+//EMPLOYEE CONTROLLER
+Route::get('/employee', 'EmployeeController@index');
+Route::get('/employee/{id}', 'EmployeeController@show');
