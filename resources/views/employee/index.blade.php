@@ -1,8 +1,6 @@
 <h1>Employee List</h1>
 <div>
-	<a href="{{ url('/') }}/employee/create">
-        New Employee
-    </a>
+	<a href="{{ url('/') }}/employee/create">New Employee</a>
 </div>
 
 <table border=1>

@@ -1,10 +1,11 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\EmployeeModel;
+use App\PositionModel;
 
-class EmployeeController extends Controller
+class PositionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,11 +14,11 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $table_employee = EmployeeModel::select_all();
-        $data = [
-            "table_employee" => $table_employee
-        ];
-        return view('employee/index',$data);
+      $table_position = PositionModel::select_all();
+      $data = [
+          "table_position" => $table_position
+      ];
+      return view('position/index',$data);
     }
 
     /**
@@ -49,11 +50,11 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        $table_employee = EmployeeModel::select_by_id($id);
+        $table_position = PositionModel::select_by_id($id);
         $data = [
-            "table_employee" => $table_employee
+            "table_position" => $table_position
         ];
-        return view('employee/show',$data);
+        return view('position/show',$data);
     }
 
     /**
