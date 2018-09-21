@@ -57,6 +57,10 @@ Route::get('/combine/{id}', function ($id) {
 
 //EMPLOYEE CONTROLLER
 Route::get('/employee', 'EmployeeController@index');
+Route::get('/employee/create', 'EmployeeController@create');
+Route::post('/employee', 'EmployeeController@store');
+Route::get('/employee/{id}/edit', 'EmployeeController@edit');
+Route::put('/employee/{id}', 'EmployeeController@update');
 Route::get('/employee/{id}', 'EmployeeController@show');
 
 //POSITION CONTROLLER
