@@ -49,7 +49,7 @@ class EmployeeController extends Controller
         $salary = $request->input('salary');
         $position_id = $request->input('position_id');
 
-        EmployeeModel::insertTable($name, $age, $address, $salary, $position_id);
+        EmployeeModel::insert($name, $age, $address, $salary, $position_id);
 
         return redirect('/employee');
     }
@@ -101,7 +101,7 @@ class EmployeeController extends Controller
         $salary = $request->input('salary');
         $position_id = $request->input('position_id');
 
-        EmployeeModel::updateTable($name, $age, $address, $salary, $position_id, $id);
+        EmployeeModel::update_by_id($name, $age, $address, $salary, $position_id, $id);
 
         return redirect('/employee');
     }

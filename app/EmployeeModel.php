@@ -20,13 +20,13 @@ class EmployeeModel extends Model
         return DB::select($sql , []);
     }
 
-    public static function insertTable($name, $age, $address, $salary, $position_id){
+    public static function insert($name, $age, $address, $salary, $position_id){
         $sql = "INSERT INTO tb_employee (name,age,address,salary, position_id)
                     VALUES ( '{$name}', {$age}, '{$address}', {$salary}, {$position_id})";
         DB::insert($sql, []); //NO NEED TO RETURN
 	}
 
-    public static function updateTable($name, $age, $address, $salary, $position_id, $id){
+    public static function update_by_id($name, $age, $address, $salary, $position_id, $id){
         $sql = "UPDATE tb_employee SET
             name = '{$name}',
             age = {$age},
