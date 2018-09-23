@@ -55,14 +55,15 @@ Route::get('/combine/{id}', function ($id) {
 	return view('combine', $data);
 });
 
-//EMPLOYEE CONTROLLER
+//FOR EMPLOYEE CONTROLLER
 Route::get('/employee', 'EmployeeController@index');
 Route::get('/employee/create', 'EmployeeController@create');
 Route::post('/employee', 'EmployeeController@store');
+Route::get('/employee/{id}', 'EmployeeController@show');
 Route::get('/employee/{id}/edit', 'EmployeeController@edit');
 Route::put('/employee/{id}', 'EmployeeController@update');
-Route::get('/employee/{id}', 'EmployeeController@show');
+Route::delete('/employee/{id}', 'EmployeeController@destroy');
 
-//POSITION CONTROLLER
+//FOR POSITION CONTROLLER
 Route::get('/position', 'PositionController@index');
 Route::get('/position/{id}', 'PositionController@show');

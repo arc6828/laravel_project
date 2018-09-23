@@ -36,4 +36,9 @@ class EmployeeModel extends Model
             WHERE employee_id = {$id}";
         DB::update($sql, []);
 	}
+
+    public static function delete_by_id($id){
+        $sql = "DELETE FROM tb_employee WHERE employee_id = {$id}";
+        DB::delete($sql, []);
+	}
 }
