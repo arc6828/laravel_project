@@ -16,6 +16,7 @@
 		<td>
 			<a href="{{ url('/') }}/position/{{ $row->position_id }}">View</a>
 			<a href="{{ url('/') }}/position/{{ $row->position_id }}/edit">Edit</a>
+			<a href="javascript:void(0)" onclick="onDelete( {{ $row->position_id }} )">Delete</a>
 		</td>
 	</tr>
 	@endforeach
