@@ -71,3 +71,12 @@ Route::delete('/employee/{id}', 'EmployeeController@destroy');
 //FOR POSITION CONTROLLER
 Route::get('/position', 'PositionController@index');
 Route::get('/position/{id}', 'PositionController@show');
+
+//FOR STUDENT CONTROLLER
+Route::get('/student',          'StudentController@index');
+Route::get('/student/create',   'StudentController@create');
+Route::post('/student',         'StudentController@store');
+Route::get('/student/{id}',     'StudentController@show');
+Route::get('/student/{id}/edit','StudentController@edit');
+Route::put('/student/{id}',     'StudentController@update');
+Route::delete('/student/{id}',  'StudentController@destroy');
