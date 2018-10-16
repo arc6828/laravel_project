@@ -12,6 +12,8 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
         $table_employee = EmployeeModel::select_all();

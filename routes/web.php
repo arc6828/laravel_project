@@ -60,8 +60,8 @@ Route::get('/combine/{id}', function ($id) {
 });
 
 //FOR EMPLOYEE CONTROLLER
-Route::get('/employee', 'EmployeeController@index');
-Route::get('/employee/create', 'EmployeeController@create');
+Route::get('/employee', 'EmployeeController@index')->middleware('role:admin,account');
+Route::get('/employee/create', 'EmployeeController@create')->middleware('role:admin');
 Route::post('/employee', 'EmployeeController@store');
 Route::get('/employee/{id}', 'EmployeeController@show');
 Route::get('/employee/{id}/edit', 'EmployeeController@edit');
@@ -80,3 +80,7 @@ Route::get('/student/{id}',     'StudentController@show');
 Route::get('/student/{id}/edit','StudentController@edit');
 Route::put('/student/{id}',     'StudentController@update');
 Route::delete('/student/{id}',  'StudentController@destroy');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
