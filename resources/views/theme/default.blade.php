@@ -110,9 +110,9 @@
 
     <script src="{!! asset('theme/vendor/raphael/raphael.min.js') !!}"></script>
 
-    <script src="{!! asset('theme/vendor/morrisjs/morris.min.js') !!}"></script>
+    <!--script src="{!! asset('theme/vendor/morrisjs/morris.min.js') !!}"></script-->
 
-    <script src="{!! asset('theme/data/morris-data.js') !!}"></script>
+    <!--script src="{!! asset('theme/data/morris-data.js') !!}"></script-->
 
 
 
