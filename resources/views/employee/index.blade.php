@@ -53,3 +53,6 @@
 		}
 	</script>
 </div>
+<div>
+	<img src="{{ url('/') }}/storage/avatar/25T3ZMtqvqW07Vy6aRyqHr0hunD5B8OKrfzbEHTJ.jpeg">
+</div>

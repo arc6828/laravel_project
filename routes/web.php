@@ -1,5 +1,4 @@
  <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -68,6 +67,9 @@ Route::get('/employee/{id}/edit', 'EmployeeController@edit')->middleware('role:a
 Route::put('/employee/{id}', 'EmployeeController@update')->middleware('role:admin');
 Route::delete('/employee/{id}', 'EmployeeController@destroy')->middleware('role:admin');
 
+Route::get('/employee/upload-form', 'EmployeeController@upload_form')->middleware('role:admin');
+Route::post('/employee/upload', 'EmployeeController@upload')->middleware('role:admin');
+
 //Route:resource('','EmployeController');
 
 //FOR POSITION CONTROLLER
@@ -86,3 +88,12 @@ Route::delete('/student/{id}',  'StudentController@destroy');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/download/{filename}','EmployeeController@download');
+
+Route::get('/position/{id}/pdf','PositionController@downloadPDF');
+Route::get('/position/{id}/pdf','PositionController@downloadPDF');
+
+
+Route::get('/downloadpdf', 'PositionController@downloadpdf');

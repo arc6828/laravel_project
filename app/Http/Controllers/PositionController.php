@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\PositionModel;
+use PDF;
 
 class PositionController extends Controller
 {
@@ -89,5 +90,12 @@ class PositionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function downloadpdf () {
+      $data = [1,2,3,4,5];
+      $pdf = PDF::loadView('test_pdf',$data);
+      return $pdf->stream('test.pdf'); //แบบนี้จะ stream มา preview
+      //return $pdf->download('test.pdf'); //แบบนี้จะดาวโหลดเลย
     }
 }

@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
+
 use Illuminate\Http\Request;
 use App\EmployeeModel;
 use App\PositionModel;
@@ -12,11 +14,11 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-	public function __construct()
-	{
-	    $this->middleware('auth');
-	    $this->middleware('role:admin,account');
-	}
+    public function __construct()
+    {
+        //$this->middleware('auth');
+        //$this->middleware('role:admin,account');
+    }
 
 
     public function index()
@@ -55,10 +57,13 @@ class EmployeeController extends Controller
         $address = $request->input('address');
         $salary = $request->input('salary');
         $position_id = $request->input('position_id');
+     	$path = $request->file('image')->store('avatar','public');
+    //$path = Storage::putFile('avatar', $request->file('img'));
 
-        EmployeeModel::insert($name, $age, $address, $salary, $position_id);
+    echo $path;
+        //EmployeeModel::insert($name, $age, $address, $salary, $position_id);
 
-        return redirect('/employee');
+        //return redirect('/employee');
     }
 
     /**
@@ -123,5 +128,9 @@ class EmployeeController extends Controller
     {
         EmployeeModel::delete_by_id($id);
         return redirect('/employee');
+    }
+
+    public function download($filename){
+      return Storage::download("public/$filename");
     }
 }
