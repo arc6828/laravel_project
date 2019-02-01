@@ -14,7 +14,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function () {
+Route::get('/test2', function () {
     return view('test');
 });
 
@@ -85,6 +85,15 @@ Route::get('/student/{id}/edit','StudentController@edit');
 Route::put('/student/{id}',     'StudentController@update');
 Route::delete('/student/{id}',  'StudentController@destroy');
 
+//FOR TEST CONTROLLER
+Route::get('/test',          'TestController@index');
+Route::get('/test/create',   'TestController@create');
+Route::post('/test',         'TestController@store');
+Route::get('/test/{id}',     'TestController@show');
+Route::get('/test/{id}/edit','StudentController@edit');
+Route::put('/test/{id}',     'StudentController@update');
+Route::delete('/test/{id}',  'StudentController@destroy');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -97,3 +106,8 @@ Route::get('/position/{id}/pdf','PositionController@downloadPDF');
 
 
 Route::get('/downloadpdf', 'PositionController@downloadpdf');
+
+Route::prefix('login')->group(function () {
+    Route::get('/{provider}', 'Auth\LoginController@redirectToProvider')->name('login.provider');
+    Route::get('/{provider}/callback', 'Auth\LoginController@handleProviderCallback')->name('login.provider.callback');
+});

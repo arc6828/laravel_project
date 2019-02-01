@@ -62,6 +62,15 @@
                                 </a>
                             </div>
                         </div>
+
+                        <p class="text-center" style="margin:20px;">OR</p>
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                              <a href="{{url('/')}}/login/facebook" class="btn btn-outline-primary">
+                                <i class="fa fa-facebook"></i> Login with Facebook
+                              </a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
