@@ -14,7 +14,14 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <p style="margin-bottom:20px;">You are logged in!</p>
+
+                    <h2>See All Members</h2>
+                    <ul>
+                        @foreach($users as $row)
+                        <li>{{$row->name}} </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>
