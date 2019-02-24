@@ -16,3 +16,11 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+//Route::apiResource('/district','DistrictController');
+
+Route::get('/province','API\DistrictController@provinces');
+Route::get('/province/{province_code}/amphoe','API\DistrictController@amphoes');
+Route::get('/province/{province_code}/amphoe/{amphoe_code}/district','API\DistrictController@districts');
+Route::get('/province/{province_code}/amphoe/{amphoe_code}/district/{district_code}','API\DistrictController@detail');
