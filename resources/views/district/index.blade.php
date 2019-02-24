@@ -134,12 +134,12 @@
       function showProvinces(){
         //GET INFORMATION
         $.ajax({
-  					url: "{{ url('/') }}/api/province",
-  					type: "GET",
-  					dataType : "json",
-  			})
-          .done(function(result){
-  					console.log(result);
+			url: "{{ url('/') }}/api/province",
+			type: "GET",
+			dataType : "json",
+		})
+        .done(function(result){
+			//console.log(result);
             $("#input_province").empty();
             for(var i=0; i<result.length; i++){
               $("#input_province").append(
@@ -152,40 +152,40 @@
             //console.log("FIRST : ", $("#input_province").val() );
 
             showAmphoes();
-  				}); //END AJAX
+		}); //END AJAX
       }
       function showAmphoes(){
         var province_code = $("#input_province").val();
         //GET INFORMATION
         $.ajax({
-  					url: "{{ url('/') }}/api/province/"+province_code+"/amphoe",
-  					type: "GET",
-  					dataType : "json",
-  			})
-          .done(function(result){
-  					console.log(result);
+			url: "{{ url('/') }}/api/province/"+province_code+"/amphoe",
+			type: "GET",
+			dataType : "json",
+		})
+        .done(function(result){
+			//console.log(result);
             $("#input_amphoe").empty();
             for(var i=0; i<result.length; i++){
-              $("#input_amphoe").append(
+                $("#input_amphoe").append(
                 $('<option></option>')
                   .attr("value", ""+result[i].amphoe_code)
                   .html(""+result[i].amphoe)
               );
             }
             showDistricts();
-  				}); //END AJAX
+        }); //END AJAX
       }
       function showDistricts(){
         var province_code = $("#input_province").val();
         var amphoe_code = $("#input_amphoe").val();
         //GET INFORMATION
         $.ajax({
-  					url: "{{ url('/') }}/api/province/"+province_code+"/amphoe/"+amphoe_code+"/district",
-  					type: "GET",
-  					dataType : "json",
-  			})
-          .done(function(result){
-  					console.log(result);
+			url: "{{ url('/') }}/api/province/"+province_code+"/amphoe/"+amphoe_code+"/district",
+			type: "GET",
+			dataType : "json",
+		})
+        .done(function(result){
+			//console.log(result);
             $("#input_district").empty();
             for(var i=0; i<result.length; i++){
               $("#input_district").append(
@@ -195,7 +195,7 @@
               );
             }
             showZipcode();
-  				}); //END AJAX
+		}); //END AJAX
       }
       function showZipcode(){
         var province_code = $("#input_province").val();
@@ -203,16 +203,16 @@
         var district_code = $("#input_district").val();
         //GET INFORMATION
         $.ajax({
-  					url: "{{ url('/') }}/api/province/"+province_code+"/amphoe/"+amphoe_code+"/district/"+district_code,
-  					type: "GET",
-  					dataType : "json",
-  			})
-          .done(function(result){
-  					console.log(result);
+			url: "{{ url('/') }}/api/province/"+province_code+"/amphoe/"+amphoe_code+"/district/"+district_code,
+			type: "GET",
+			dataType : "json",
+		})
+        .done(function(result){
+			//console.log(result);
             for(var i=0; i<result.length; i++){
               $("#input_zipcode").val(result[i].zipcode);
             }
-  				}); //END AJAX
+		}); //END AJAX
       }
     </script>
   </body>

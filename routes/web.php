@@ -112,4 +112,5 @@ Route::prefix('login')->group(function () {
     Route::get('/{provider}/callback', 'Auth\LoginController@handleProviderCallback')->name('login.provider.callback');
 });
 
+Route::get('/district/example','DistrictController@example');
 Route::resource('/district','DistrictController');

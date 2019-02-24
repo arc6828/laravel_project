@@ -4,6 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -41,15 +42,30 @@
     <script>
       $(function(){
         console.log("HELLO");
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         showProvinces();
+
+
       });
+
+
+      function xxx(r){
+          console.log("XXX: ", r);
+      }
+
+
 
       function showProvinces(){
         //GET INFORMATION
         $.ajax({
-  					url: "{{ url('/') }}/api/province",
-  					type: "GET",
-  					dataType : "json",
+				url: "https://laravel.csincube.com/public/api/province?callback=?",
+				type: "GET",
+				dataType : "jsonp",
+                error : function(e){console.log(e);}
   			})
           .done(function(result){
   					console.log(result);
@@ -65,13 +81,13 @@
             //console.log("FIRST : ", $("#input_province").val() );
 
             showAmphoes();
-  				}); //END AJAX
+		      }); //END AJAX
       }
       function showAmphoes(){
         var province_code = $("#input_province").val();
         //GET INFORMATION
         $.ajax({
-  					url: "{{ url('/') }}/api/province/"+province_code+"/amphoe",
+  					url: "https://laravel.csincube.com/public/api/province/"+province_code+"/amphoe",
   					type: "GET",
   					dataType : "json",
   			})
@@ -93,7 +109,7 @@
         var amphoe_code = $("#input_amphoe").val();
         //GET INFORMATION
         $.ajax({
-  					url: "{{ url('/') }}/api/province/"+province_code+"/amphoe/"+amphoe_code+"/district",
+  					url: "https://laravel.csincube.com/public/api/province/"+province_code+"/amphoe/"+amphoe_code+"/district",
   					type: "GET",
   					dataType : "json",
   			})
@@ -116,7 +132,7 @@
         var district_code = $("#input_district").val();
         //GET INFORMATION
         $.ajax({
-  					url: "{{ url('/') }}/api/province/"+province_code+"/amphoe/"+amphoe_code+"/district/"+district_code,
+  					url: "https://laravel.csincube.com/public/api/province/"+province_code+"/amphoe/"+amphoe_code+"/district/"+district_code,
   					type: "GET",
   					dataType : "json",
   			})

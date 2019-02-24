@@ -17,6 +17,11 @@ class DistrictController extends Controller
       return view("district/index");
     }
 
+    public function example()
+    {
+      return view("district/example");
+    }
+
     /**
      * Show the form for creating a new resource.
      *
