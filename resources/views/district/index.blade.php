@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <title>Create address</title>
 
 
@@ -52,6 +52,12 @@
       </div>
     </nav>
     <div class="container">
+        <h1 class="mt-5">รายการทั้งหมด</h1>
+        <div class="row">
+          <div class="col-12">
+              <table id="table-example" class="table"></table>
+          </div>
+        </div>
         <h1 class="mt-5">ที่อยู่สำหรับจัดส่งสินค้า</h1>
         <div class="row">
             <div class="col-sm-8">
@@ -116,7 +122,18 @@
             </div>
         </div>
 
-
+        <style>
+          #map {
+            height: 250px;
+            width: 100%;
+          }
+        </style>
+        <h1 class="mt-5">Map</h1>
+        <div class="row  mb-5">
+          <div class="col-12">
+            <div id="map"></div>
+          </div>
+        </div>
 
     </div>
 
@@ -125,11 +142,45 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script>
       $(document).ready(function(){
         console.log("HELLO");
         showProvinces();
+        dataTable();
       });
+      function dataTable(){
+        var url = "{{ url('/') }}/api/district";
+        var callback = function(result){
+          var dataSet = [];
+          result.forEach(function(element,index) {
+            var row = [
+              element.id,
+              element.district,
+              element.amphoe,
+              element.province,
+              element.zipcode,
+            ];
+            dataSet.push(row);
+          }); //END FOREACH
+          //console.log(dataSet);
+          var table = $('#table-example').DataTable({
+            "data": dataSet,
+            "deferRender" : true,
+            "columns": [
+              { title: "id" },
+              { title: "ตำบล" },
+              { title: "อำเภอ" },
+              { title: "จังหวัด" },
+              { title: "zipcode" },
+            ],
+          }); // END DATATABLE
+        };
+        //CALL AJAX
+        ajax(url,callback);
+      }
 
       function showProvinces(){
         //PARAMETERS
@@ -219,5 +270,23 @@
       }
 
     </script>
+    <script>
+      var mymap;
+      function initMap() {
+        //SIMPLE MAP
+        mymap = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 14.133593, lng: 100.615960},
+          zoom: 11
+        });
+        //MARKER
+        var marker = new google.maps.Marker({
+      	   position: new google.maps.LatLng(100.615960),
+      	   map: mymap,
+      	   title: 'ถนน ลาดปลาเค้า'
+      	});
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK3RgqSLy1toc4lkh2JVFQ5ipuRB106vU&callback=initMap"
+    async defer></script>
   </body>
 </html>

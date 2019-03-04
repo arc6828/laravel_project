@@ -15,7 +15,8 @@ class DistrictController extends Controller
      */
     public function index()
     {
-
+      $district = District::all();
+      return response()->json($district);
     }
 
     public function provinces()
@@ -46,7 +47,7 @@ class DistrictController extends Controller
     public function detail($province_code,$amphoe_code,$district_code)
     {
       $districts = District::where('province_code',$province_code)
-        ->where('amphoe_code',$amphoe_code)        
+        ->where('amphoe_code',$amphoe_code)
         ->where('district_code',$district_code)
         ->get();
       return response()->json($districts);

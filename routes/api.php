@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 //Route::apiResource('/district','DistrictController');
-
+Route::get('/district','API\DistrictController@index');
 Route::get('/province','API\DistrictController@provinces');
 Route::get('/province/{province_code}/amphoe','API\DistrictController@amphoes');
 Route::get('/province/{province_code}/amphoe/{amphoe_code}/district','API\DistrictController@districts');
