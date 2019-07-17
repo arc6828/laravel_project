@@ -152,3 +152,12 @@ Route::get("/gallery/cat",function(){
   ];
   return view("test/cat", $data);
 });
+
+
+Route::get("/profile/create","ProfileController@create");
+Route::get("/profile/{id}/edit", "ProfileController@edit");
+
+Route::get( "/newgallery" , "ProfileController@gallery" );
+Route::get( "/newgallery/ant" , "ProfileController@ant" );
+Route::get( "/newgallery/bird" , "ProfileController@bird" );
+Route::get( "/newgallery/cat" , "ProfileController@cat" );
