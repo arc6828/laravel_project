@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
-use App\EmployeeModel;
-use App\PositionModel;
+use App\Employee;
+//use App\PositionModel;
 
 class EmployeeController extends Controller
 {
@@ -21,12 +21,28 @@ class EmployeeController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
-        $table_employee = EmployeeModel::select_all();
+        //GET KEYWORD FROM URL
+        $q = $request->input('q');
+
+        //METHOD : 1
+        if(!empty($q)){ //NOT EMPTY = HAVE SOME KEYWORD in $q
+            $employees = Employee::search($q);
+        }else{
+            $employees = Employee::getAll();
+        }
+
+        //METHOD : 2
+        //$employees = ( !empty($q) ) ? Employee::search($q) : Employee::getAll();
+
+        //PACK DATA
         $data = [
-            "table_employee" => $table_employee
+          "employees" => $employees ,
+          "q" => $q,                    //send $q to display in view
         ];
+
+        //DISPLAY IN VIEW
         return view('employee/index',$data);
     }
 
@@ -74,9 +90,8 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        $table_employee = EmployeeModel::select_by_id($id);
         $data = [
-            "table_employee" => $table_employee
+            "employee" => Employee::getItem($id) ,
         ];
         return view('employee/show',$data);
     }

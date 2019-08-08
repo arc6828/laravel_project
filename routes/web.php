@@ -59,6 +59,15 @@ Route::get('/combine/{id}', function ($id) {
 });
 
 //FOR EMPLOYEE CONTROLLER
+Route::get('/employee', 'EmployeeController@index');
+Route::get('/employee/create', 'EmployeeController@create');
+Route::post('/employee', 'EmployeeController@store');
+Route::get('/employee/{id}', 'EmployeeController@show');
+Route::get('/employee/{id}/edit', 'EmployeeController@edit');
+Route::put('/employee/{id}', 'EmployeeController@update');
+Route::delete('/employee/{id}', 'EmployeeController@destroy');
+
+/*
 Route::get('/employee', 'EmployeeController@index')->middleware('role:admin,account');
 Route::get('/employee/create', 'EmployeeController@create')->middleware('role:admin');
 Route::post('/employee', 'EmployeeController@store')->middleware('role:admin');
@@ -69,7 +78,7 @@ Route::delete('/employee/{id}', 'EmployeeController@destroy')->middleware('role:
 
 Route::get('/employee/upload-form', 'EmployeeController@upload_form')->middleware('role:admin');
 Route::post('/employee/upload', 'EmployeeController@upload')->middleware('role:admin');
-
+*/
 //Route:resource('','EmployeController');
 
 //FOR POSITION CONTROLLER
