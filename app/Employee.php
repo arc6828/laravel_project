@@ -9,23 +9,39 @@ class Employee extends Model
 {
     protected $table = "employees";
 
-    public static function getAll(){
+    public static function getAll()
+    {
         return self::get();
     }
 
-    public static function getItem($id){
-        //SIMILAR TO, BUT DIFFERENT A LITTLE BIT
-        //return self::where('id',$id)->get($id);
+    public static function getItem($id)
+    {
         return self::findOrFail($id);
     }
 
-    public static function search($q){
+    public static function search($q)
+    {
         return self::where("name","like","%{$q}%")
-          ->orWhere("name","like","%{$q}%")
           ->orWhere("age","like","%{$q}%")
           ->orWhere("address","like","%{$q}%")
           ->orWhere("salary","like","%{$q}%")
           ->get();
+    }
+
+    public static function createItem()
+    {
+        //RETURN A NEW RECORD OBJECT
+        return self::create(['name' => 'Flight 10']);
+    }
+
+    public static function updateItem($id,$item)
+    {
+        return self::findOrFail($id)->update($item);
+    }
+
+    public static function deleteItem()
+    {
+
     }
 
 
