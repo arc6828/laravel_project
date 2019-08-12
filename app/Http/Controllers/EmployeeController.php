@@ -53,11 +53,14 @@ class EmployeeController extends Controller
      */
     public function create()
     {
+        /*
         $table_position = PositionModel::select_all();
         $data = [
             "table_position" => $table_position
         ];
         return view('employee/create',$data);
+        */
+        return view('employee/create');
     }
 
     /**
@@ -68,18 +71,21 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        $name = $request->input('name');
+        /*$name = $request->input('name');
         $age = $request->input('age');
         $address = $request->input('address');
         $salary = $request->input('salary');
         $position_id = $request->input('position_id');
      	$path = $request->file('image')->store('avatar','public');
-    //$path = Storage::putFile('avatar', $request->file('img'));
-
-    echo $path;
-        //EmployeeModel::insert($name, $age, $address, $salary, $position_id);
-
-        //return redirect('/employee');
+        //$path = Storage::putFile('avatar', $request->file('img'));
+        echo $path;
+        $employee = EmployeeModel::insert($name, $age, $address, $salary, $position_id);
+        */
+        $item = $request->all();        
+        //$item = $request->except(['_method','_token']);
+        $employee = Employee::storeItem($item);
+        $id = $employee->id;
+        return redirect("/employee/{$id}/edit");
     }
 
     /**
@@ -104,11 +110,11 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        $table_employee = EmployeeModel::select_by_id($id);
-        $table_position = PositionModel::select_all();
+        //$table_employee = EmployeeModel::select_by_id($id);
+        //$table_position = PositionModel::select_all();
         $data = [
-            'table_employee' => $table_employee,
-            'table_position' => $table_position
+            'employee' => Employee::getItem($id),
+            //'table_position' => $table_position
         ];
         return view('employee/edit',$data);
     }
@@ -122,6 +128,7 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        /*
         $name = $request->input('name');
         $age = $request->input('age');
         $address = $request->input('address');
@@ -129,8 +136,11 @@ class EmployeeController extends Controller
         $position_id = $request->input('position_id');
 
         EmployeeModel::update_by_id($name, $age, $address, $salary, $position_id, $id);
-
-        return redirect('/employee');
+        */
+        $item = $request->all();        
+        //$item = $request->except(['_method','_token']);
+        Employee::updateItem($id,$item);
+        return redirect("/employee/{$id}/edit");
     }
 
     /**
@@ -141,7 +151,7 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        EmployeeModel::delete_by_id($id);
+        Employee::destroyItem($id);
         return redirect('/employee');
     }
 

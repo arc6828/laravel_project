@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class PostController extends Controller
 {
@@ -53,7 +55,8 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
-        $requestData = $request->all();
+        //$requestData = $request->all();        
+        $requestData = $request->except(['_method','_token']);
 
         Post::create($requestData);
 
@@ -99,11 +102,14 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
 
-        $requestData = $request->all();
+        //$requestData = $request->all();
+        $requestData = $request->except(['_method','_token']);
         print_r($requestData);
 
         $post = Post::findOrFail($id);
         $post->update($requestData);
+
+        //DB::table('posts')->where('id', $id)->update($requestData);
 
         //return redirect('post')->with('flash_message', 'Post updated!');
     }

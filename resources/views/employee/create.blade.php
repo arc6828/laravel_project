@@ -1,4 +1,5 @@
 <h1>Create New Employee</h1>
+<a href="{{ url('/') }}/employee">back</a>
 <form action="{{ url('/') }}/employee" method="POST" enctype="multipart/form-data">
 	{{ csrf_field() }}
 	{{ method_field('POST') }}
@@ -18,24 +19,25 @@
 		<strong>Salary : </strong>
 		<input type="number" step="any" name="salary" placeholder="salary here..." >
 	</div>
-	<div style="display:none;">
+	<div>
 		<strong>Position_id : </strong>
 		<input type="number" step="step" name="position_id" placeholder="position_id here..." >
 	</div>
-	<div>
+	<div  style="display: none;">
 		<strong>Position_id : </strong>
-        <select name="position_id">
-            @foreach($table_position as $row_position)
-            <option value="{{ $row_position->position_id }}">{{ $row_position->position_name }}</option>
+        <select name="position_id2" disabled="">
+            @foreach([] as $position)
+            <option value="{{ $position->id }}">
+            	{{ $position->name }}
+            </option>
             @endforeach
         </select>
 	</div>
-	<div>
+	<div style="display: none;">
 		<strong>Img : </strong>
-		<input type="file" name="image" placeholder="upload image here ..." >
+		<input type="file" name="image" placeholder="upload image here ..." disabled >
 	</div>
 	<div>
-		<a href="{{ url('/') }}/employee">back</a>
 		<button type="submit">Create</button>
 	</div>
 </form>
