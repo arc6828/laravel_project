@@ -55,7 +55,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
-        //$requestData = $request->all();        
+        //$requestData = $request->all();
         $requestData = $request->except(['_method','_token']);
 
         Post::create($requestData);
@@ -111,7 +111,7 @@ class PostController extends Controller
 
         //DB::table('posts')->where('id', $id)->update($requestData);
 
-        //return redirect('post')->with('flash_message', 'Post updated!');
+        return redirect('post')->with('flash_message', 'Post updated!');
     }
 
     /**

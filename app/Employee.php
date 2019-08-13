@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\DB;
 class Employee extends Model
 {
     protected $table = "employees";
-    protected $guarded = [];
+    protected $fillable = ["name","age","address","salary","position_id"];    
+    protected $primaryKey = 'id';
 
     public static function getAll()
     {
@@ -38,13 +39,13 @@ class Employee extends Model
 
     public static function updateItem($id,$item)
     {
-        //DB::table('employees')->where('id',$id)->update($item); 
+        //DB::table('employees')->where('id',$id)->update($item);
         self::findOrFail($id)->update($item);
     }
 
     public static function destroyItem($id)
     {
-        //DB::table('employees')->where('id',$id)->delete(); 
+        //DB::table('employees')->where('id',$id)->delete();
         //self::destroy($id);
         self::findOrFail($id)->delete();
     }
