@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
 use App\Employee;
+use App\Position;
 //use App\PositionModel;
 
 class EmployeeController extends Controller
@@ -53,14 +54,10 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        /*
-        $table_position = PositionModel::select_all();
         $data = [
-            "table_position" => $table_position
+            "positions" => Position::getAll() ,
         ];
-        return view('employee/create',$data);
-        */
-        return view('employee/create');
+        return view('employee/create', $data);
     }
 
     /**
@@ -81,7 +78,7 @@ class EmployeeController extends Controller
         echo $path;
         $employee = EmployeeModel::insert($name, $age, $address, $salary, $position_id);
         */
-        $item = $request->all();        
+        $item = $request->all();
         //$item = $request->except(['_method','_token']);
         $employee = Employee::storeItem($item);
         $id = $employee->id;
@@ -114,6 +111,7 @@ class EmployeeController extends Controller
         //$table_position = PositionModel::select_all();
         $data = [
             'employee' => Employee::getItem($id),
+            "positions" => Position::getAll() ,
             //'table_position' => $table_position
         ];
         return view('employee/edit',$data);
@@ -137,7 +135,7 @@ class EmployeeController extends Controller
 
         EmployeeModel::update_by_id($name, $age, $address, $salary, $position_id, $id);
         */
-        $item = $request->all();        
+        $item = $request->all();
         //$item = $request->except(['_method','_token']);
         Employee::updateItem($id,$item);
         return redirect("/employee/{$id}/edit");

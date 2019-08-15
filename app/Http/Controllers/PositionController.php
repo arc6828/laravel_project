@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\PositionModel;
+use App\Position;
 use PDF;
 
 class PositionController extends Controller
@@ -13,12 +13,21 @@ class PositionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      $table_position = PositionModel::select_all();
+      //GET KEYWORD FROM URL
+      $q = $request->input('q');
+
+      //METHOD : 2
+      $positions = ( !empty($q) ) ? Position::search($q) : Position::getAll();
+
+      //PACK DATA
       $data = [
-          "table_position" => $table_position
+        "positions" => $positions ,
+        "q" => $q,                    //send $q to display in view
       ];
+
+      //DISPLAY IN VIEW
       return view('position/index',$data);
     }
 
@@ -51,11 +60,10 @@ class PositionController extends Controller
      */
     public function show($id)
     {
-        $table_position = PositionModel::select_by_id($id);
-        $data = [
-            "table_position" => $table_position
-        ];
-        return view('position/show',$data);
+      $data = [
+          "position" => Position::getItem($id) ,
+      ];
+      return view('position/show',$data);
     }
 
     /**

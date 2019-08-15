@@ -21,5 +21,24 @@
 </div>
 <div>
   <strong>Position_id : </strong>
-  <input type="number" name="position_id" value="{{ isset($employee->position_id) ?  $employee->position_id : '' }}" placeholder="position_id here..." />
+  <select name="position_id">
+    @foreach($positions as $position)
+      @php
+        $position_id = isset($employee->position_id) ?  $employee->position_id : '';
+      @endphp
+      <option
+        value="{{ $position->id }}"
+        {{ $position->id == $position_id ? "selected" : "" }}
+        >
+        {{ $position->name }}
+      </option>
+    @endforeach
+  </select>
+</div>
+
+
+
+<div style="display:none;">
+  <strong>Position_id : </strong>
+  <input type="number" name="position_id" value="{{ isset($employee->position_id) ?  $employee->position_id : '' }}" placeholder="position_id here..." disabled  />
 </div>
