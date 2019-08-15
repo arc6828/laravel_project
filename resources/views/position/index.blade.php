@@ -3,20 +3,29 @@
 	<a href="{{ url('/') }}/position/create">New Position</a>
 </div>
 
+<div>
+	<form action="{{ url('/') }}/employee" method="GET">
+		<input type="text" name="q" placeholder="type your keyword..." value="{{ $q }}">
+		<button type="submit">Search</button>
+	</form>
+</div>
+
 <table border=1>
 	<tr>
-		<th>position_id</th>
-		<th>position_name</th>
+		<th>id</th>
+		<th>name</th>
+		<th>description</th>
 		<th>action</th>
 	</tr>
-	@foreach($table_position as $row)
+	@foreach($positions as $position)
 	<tr>
-		<td>{{ $row->position_id }}</td>
-		<td>{{ $row->position_name }}</td>
+		<td>{{ $position->id }}</td>
+		<td>{{ $position->name }}</td>
+		<td>{{ $position->description }}</td>
 		<td>
-			<a href="{{ url('/') }}/position/{{ $row->position_id }}">View</a>
-			<a href="{{ url('/') }}/position/{{ $row->position_id }}/edit">Edit</a>
-			<a href="javascript:void(0)" onclick="onDelete( {{ $row->position_id }} )">Delete</a>
+			<a href="{{ url('/') }}/position/{{ $position->id }}">View</a>
+			<a href="{{ url('/') }}/position/{{ $position->id }}/edit">Edit</a>
+			<a href="javascript:void(0)" onclick="onDelete( {{ $position->id }} )">Delete</a>
 		</td>
 	</tr>
 	@endforeach
