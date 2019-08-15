@@ -55,7 +55,7 @@ class EmployeeController extends Controller
     public function create()
     {
         $data = [
-            "positions" => Position::getAll() ,
+            "positions" => Position::getAll() , // FOR DROPDOWN POSITION
         ];
         return view('employee/create', $data);
     }

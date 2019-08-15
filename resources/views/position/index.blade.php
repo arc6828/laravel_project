@@ -4,7 +4,7 @@
 </div>
 
 <div>
-	<form action="{{ url('/') }}/employee" method="GET">
+	<form action="{{ url('/') }}/position" method="GET">
 		<input type="text" name="q" placeholder="type your keyword..." value="{{ $q }}">
 		<button type="submit">Search</button>
 	</form>
@@ -25,8 +25,27 @@
 		<td>
 			<a href="{{ url('/') }}/position/{{ $position->id }}">View</a>
 			<a href="{{ url('/') }}/position/{{ $position->id }}/edit">Edit</a>
-			<a href="javascript:void(0)" onclick="onDelete( {{ $position->id }} )">Delete</a>
+      <form
+        action="{{ url('/') }}/position/{{ $position->id }}"
+        method="POST"
+        onsubmit="validate();"
+        style="display:inline" >
+
+    		{{ csrf_field() }}
+    		{{ method_field('DELETE') }}
+    		<button type="submit">Delete</button>
+    	</form>
 		</td>
 	</tr>
 	@endforeach
 </table>
+
+<script>
+	function validate(){
+		//SUBMIT
+		var want_to_delete = confirm('Are you sure to delete this position?');
+		if(want_to_delete){
+			this.submit();
+		}
+	}
+</script>

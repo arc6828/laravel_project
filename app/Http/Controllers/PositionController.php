@@ -38,7 +38,7 @@ class PositionController extends Controller
      */
     public function create()
     {
-        //
+        return view('position/create');
     }
 
     /**
@@ -49,7 +49,11 @@ class PositionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item = $request->all();
+        //$item = $request->except(['_method','_token']);
+        $position = Position::storeItem($item);
+        $id = $position->id;
+        return redirect("/position/{$id}/edit");
     }
 
     /**
@@ -74,7 +78,10 @@ class PositionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            "position" => Position::getItem($id) ,
+        ];
+        return view('position/edit',$data);
     }
 
     /**
@@ -86,7 +93,10 @@ class PositionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = $request->all();
+        //$item = $request->except(['_method','_token']);
+        Position::updateItem($id,$item);
+        return redirect("/position/{$id}/edit");
     }
 
     /**
@@ -97,13 +107,14 @@ class PositionController extends Controller
      */
     public function destroy($id)
     {
-        //
+      Position::destroyItem($id);
+      return redirect('/position');
     }
 
-    public function downloadpdf () {
+    /*public function downloadpdf () {
       $data = [1,2,3,4,5];
       $pdf = PDF::loadView('test_pdf',$data);
       return $pdf->stream('test.pdf'); //แบบนี้จะ stream มา preview
       //return $pdf->download('test.pdf'); //แบบนี้จะดาวโหลดเลย
-    }
+    }*/
 }

@@ -27,4 +27,19 @@ class Position extends Model
           ->orWhere("description","like","%{$q}%")
           ->get();
     }
+
+    public static function storeItem($item)
+    {
+        return self::create($item); //RETURN OBJECT
+    }
+
+    public static function updateItem($id,$item)
+    {
+        self::findOrFail($id)->update($item);
+    }
+
+    public static function destroyItem($id)
+    {
+        self::findOrFail($id)->delete();
+    }
 }

@@ -1,6 +1,6 @@
 
 <div>
-	<a href="{{ url('/') }}/position">back to employee</a>
+	<a href="{{ url('/') }}/position">back </a>
 </div>
 
 <h1>Position : {{ $position->id }} </h1>

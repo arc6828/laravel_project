@@ -58,32 +58,6 @@ Route::get('/combine/{id}', function ($id) {
 	return view('combine', $data);
 });
 
-//FOR EMPLOYEE CONTROLLER
-Route::get('/employee', 'EmployeeController@index');
-Route::get('/employee/create', 'EmployeeController@create');
-Route::post('/employee', 'EmployeeController@store');
-Route::get('/employee/{id}', 'EmployeeController@show');
-Route::get('/employee/{id}/edit', 'EmployeeController@edit');
-Route::put('/employee/{id}', 'EmployeeController@update');
-Route::delete('/employee/{id}', 'EmployeeController@destroy');
-
-/*
-Route::get('/employee', 'EmployeeController@index')->middleware('role:admin,account');
-Route::get('/employee/create', 'EmployeeController@create')->middleware('role:admin');
-Route::post('/employee', 'EmployeeController@store')->middleware('role:admin');
-Route::get('/employee/{id}', 'EmployeeController@show')->middleware('role:admin,account');
-Route::get('/employee/{id}/edit', 'EmployeeController@edit')->middleware('role:admin');
-Route::put('/employee/{id}', 'EmployeeController@update')->middleware('role:admin');
-Route::delete('/employee/{id}', 'EmployeeController@destroy')->middleware('role:admin');
-
-Route::get('/employee/upload-form', 'EmployeeController@upload_form')->middleware('role:admin');
-Route::post('/employee/upload', 'EmployeeController@upload')->middleware('role:admin');
-*/
-//Route:resource('','EmployeController');
-
-//FOR POSITION CONTROLLER
-Route::get('/position', 'PositionController@index');
-Route::get('/position/{id}', 'PositionController@show');
 
 //FOR STUDENT CONTROLLER
 Route::get('/student',          'StudentController@index');
@@ -172,3 +146,37 @@ Route::get( "/newgallery/bird" , "ProfileController@bird" );
 Route::get( "/newgallery/cat" , "ProfileController@cat" );
 
 Route::resource('post', 'PostController');
+
+
+//FOR EMPLOYEE CONTROLLER
+Route::get('/employee', 'EmployeeController@index');
+Route::get('/employee/create', 'EmployeeController@create');
+Route::post('/employee', 'EmployeeController@store');
+Route::get('/employee/{id}', 'EmployeeController@show');
+Route::get('/employee/{id}/edit', 'EmployeeController@edit');
+Route::put('/employee/{id}', 'EmployeeController@update');
+Route::delete('/employee/{id}', 'EmployeeController@destroy');
+
+/*
+Route::get('/employee', 'EmployeeController@index')->middleware('role:admin,account');
+Route::get('/employee/create', 'EmployeeController@create')->middleware('role:admin');
+Route::post('/employee', 'EmployeeController@store')->middleware('role:admin');
+Route::get('/employee/{id}', 'EmployeeController@show')->middleware('role:admin,account');
+Route::get('/employee/{id}/edit', 'EmployeeController@edit')->middleware('role:admin');
+Route::put('/employee/{id}', 'EmployeeController@update')->middleware('role:admin');
+Route::delete('/employee/{id}', 'EmployeeController@destroy')->middleware('role:admin');
+
+Route::get('/employee/upload-form', 'EmployeeController@upload_form')->middleware('role:admin');
+Route::post('/employee/upload', 'EmployeeController@upload')->middleware('role:admin');
+*/
+//Route:resource('','EmployeController');
+
+//FOR POSITION CONTROLLER
+
+Route::get('/position', 'PositionController@index');
+Route::get('/position/create', 'PositionController@create');
+Route::post('/position', 'PositionController@store');
+Route::get('/position/{id}', 'PositionController@show');
+Route::get('/position/{id}/edit', 'PositionController@edit');
+Route::put('/position/{id}', 'PositionController@update');
+Route::delete('/position/{id}', 'PositionController@destroy');
