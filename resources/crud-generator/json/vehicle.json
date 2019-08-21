@@ -1,0 +1,24 @@
+{
+  "fields": [
+      {
+          "name": "brand",
+          "type": "string"
+      },
+      {
+          "name": "series",
+          "type": "string"
+      },
+      {
+          "name": "colour",
+          "type": "string"
+      },
+      {
+          "name": "year",
+          "type": "integer"
+      },
+      {
+          "name": "mileage",
+          "type": "float"
+      }
+  ]
+}
