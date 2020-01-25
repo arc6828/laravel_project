@@ -27,7 +27,6 @@
                         <br/>
                         <br/>
                         <div class="table-responsive">
-                            <table class="table" border="1">
                                 <thead>
                                     <tr>
                                         <th>#</th>
