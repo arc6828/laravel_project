@@ -20,7 +20,7 @@ class CreateVehiclesTable extends Migration
             $table->string('colour')->nullable();
             $table->integer('year')->nullable();
             $table->float('mileage')->nullable();
-            });
+        });
     }
 
     /**
