@@ -170,3 +170,7 @@ Route::delete('/position/{id}', 'PositionController@destroy');
 
 
 Route::resource('vehicle', 'VehicleController');
+
+Route::get('/tambon', function () {
+  return view("tambon/index");
+});
